@@ -1,62 +1,75 @@
-# Ex.No:4
-# Ex.Name: Write a CPP program to demonstrate on the object composition (use string data).
+# Ex.No:3
+# Ex.Name: Write a CPP program to show how the override works using virtual functions and how it works without the virtual concept.
 
 ## Aim:
-To Write a CPP program to demonstrate on the object composition (use string data).
+To write a CPP program to show how the override works using virtual functions and how it works without the virtual concept.
 
 ## Algorithm:
 1. Start the program.
-2. Create a class Address with string data.
-3. Create another class Person that has an Address object as its member (composition).
-4. Initialize both classes using constructors.
-5. Display details of Person and Address through a member function.
-6. End the program.
-
+2. Create a base class with normal and virtual functions.
+3. Create a derived class overriding both functions.
+4. Use a base class pointer to point to derived object.
+5. Call the normal function → base class version executes.
+6. Call the virtual function → derived class version executes.
+7. End the program.
+   
 ## Program:
 ```
-#include <iostream>
+#include<iostream>
 using namespace std;
-// Simple class
-class A 
-{
-    public:
-    string x;
-	A(){
-	    x="";
-	}
-	A(string a){
-	    cout<<"Constructor A(string a) is invoked"<<endl;
-	    x=a;
-	}
-};
-class B 
-{
-    string b;
-    A objA;
-    public:
-    B(string a) : objA(a){
-        b=a;
-    }
-    void display(){
-        cout << "Data in object of class B = " << b<< endl; 
-        cout << "Data in member object of class A in class B = " << objA.x; 
-    }
-};
 
-// Driver code
+class base {
+    public:
+    string a;
+    virtual void disp()
+    {
+        cin>>a;
+        cout<<a<<" Base Class Not overridden"<<endl;
+    }
+    void display()
+    {
+        cin>>a;
+        cout<<a<<" Base Class Not overridden"<<endl;
+    }
+};
+ 
+class derived : public base {
+   public:
+    string a;
+    void disp()
+    {
+        cin>>a;
+        cout<<a<<" Derived Class Overridding"<<endl;
+    }
+    void display()
+    {
+        cin>>a;
+        cout<<a<<" Derived Class Overridding"<<endl;
+    }
+};
+ 
 int main()
 {
-    string a;
-    cin>>a;
-	B objb(a);
-	objb.display();
-	return 0;
+    //Base Class Pointer
+    base *ptr;
+    //Derived Class Object
+    derived obj;
+    //Assign Base Class Pointer with Derived class Object
+    ptr = &obj;
+    ptr->disp();
+    ptr->display();
+    // Virtual function, binded at runtime
+    
+    // Non-virtual function, binded at compile time
+    
+   
+    return 0;
 }
 ```
 
 
 ## Output:
-<img width="1176" height="366" alt="Screenshot 2025-09-20 174754" src="https://github.com/user-attachments/assets/8234c480-705a-4ac7-ac31-35152685906e" />
+<img width="922" height="357" alt="Screenshot 2025-09-20 174408" src="https://github.com/user-attachments/assets/8d46ca68-208c-4154-9061-68c2b663fab5" />
 
 ## Result:
-The program successfully demonstrates demonstrate on the object composition (use string data).
+The program successfully demonstrates how the override works using virtual functions and how it works without the virtual concept.
